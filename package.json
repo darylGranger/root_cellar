@@ -1,0 +1,21 @@
+{
+  "name": "root_cellar",
+  "version": "1.0.0",
+  "description": "Mongo/Express/Vue/Node app for managing root cellar inventory.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "nodemon server/index.js"
+  },
+  "author": "Daryl Granger",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongodb": "^3.3.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  }
+}
