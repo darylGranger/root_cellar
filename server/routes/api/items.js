@@ -35,10 +35,11 @@ async function loadItemsCollection() {
     const client = await mongodb.MongoClient.connect //sets client to be equal to the connection
         ('mongodb+srv://bill123:bill123@cluster0-70bmu.mongodb.net/test?retryWrites=true&w=majority',  //connection string from atlas
             {
-                useNewUrlParser: true //passing in this object deals with a depreciation warning.  It is nor necessary, but cleans up the console.
+                useNewUrlParser: true, //passing in this object deals with a depreciation warning.  It is nor necessary, but cleans up the console.
+                useUnifiedTopology: true // passing in this object deals with a depreciation warning, relating to mongodb.
             });
 
     return client.db('root_cellar').collection('items');  //returns all the entries in the items section of the root_cellar db.
 }
 
-module.exports = router;
+module.exports = router; //returns the router object, which can see the loadItemsCollection function at all items.
