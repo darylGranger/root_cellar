@@ -3,14 +3,13 @@ const mongodb = require('mongodb');
 
 const router = express.Router();
 
-//Get Posts
+//Get Items
 router.get('/', async (req, res) => {  // Here '/' is equal to /api/items, as defined in the index.js file.
     const items = await loadItemsCollection();  //get all the entries in the items section of the root_cellar db
     res.send(await items.find({}).toArray());// narrow that down to - all items - and convert them to an array.
 });
 
-//Add Posts
-
+//Add Items
 router.post('/', async (req, res) => {
     const items = await loadItemsCollection();  //get all the entries in the items section of the root_cellar db
     await items.insertOne({ //using a mongodb method, we will insert one entry to the items collection and it will have the following attributes
@@ -20,7 +19,7 @@ router.post('/', async (req, res) => {
     res.status(201).send();  //HTTP response code 201 - one or more new resources have been successfully added on the server.
 })
 
-//Delete Posts
+//Delete Items
 
 router.delete('/:id', async (req, res) => {
     const items = await loadItemsCollection();  //get all the entries in the items section of the root_cellar db.
