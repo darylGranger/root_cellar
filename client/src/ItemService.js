@@ -1,6 +1,6 @@
 import axios from 'axios';  //axios makes http requests via javascript
 
-const url = 'http://localhost:5000/api/items/';  
+const url = 'api/items/';  
 
 class ItemService {  //methods that will hit the routes in the items.js file, passing in the data for the post/delete routes.
  

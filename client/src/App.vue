@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>What is in the root cellar?</h1>
+    <h1>What is in the root cellar???</h1>
     <ItemComponent />
   </div>
 </template>
