@@ -15,7 +15,7 @@
     <div class="items-container">
       <div
         class="item"
-        v-for="(item, index) in items"
+        v-for="item in items"
         v-bind:item="item"
         v-bind:index="index"
         v-bind:key="item._id"
