@@ -13,8 +13,9 @@ router.get('/', async (req, res) => {  // Here '/' is equal to /api/items, as de
 router.post('/', async (req, res) => {
     const items = await loadItemsCollection();  //get all the entries in the items section of the root_cellar db
     await items.insertOne({ //using a mongodb method, we will insert one entry to the items collection and it will have the following attributes
-        item: req.body.item, //it is available on the req object due to body parser.
-        createdAt: new Date(), //standard js function
+            description: req.body.description,
+            quantity: req.body.quantity, //it is available on the req object due to body parser.
+            createdAt: new Date() //standard js function
     });
     res.status(201).send();  //HTTP response code 201 - one or more new resources have been successfully added on the server.
 })
@@ -23,9 +24,16 @@ router.post('/', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
     const items = await loadItemsCollection();  //get all the entries in the items section of the root_cellar db.
-    await items.deleteOne({ _id: new mongodb.ObjectID(req.params.id)});   //another method from the mongodb object, gets the id from the delete call adress.
-        res.status(200).send();  // HTTP response code 200 - OK
+    await items.deleteOne({ _id: new mongodb.ObjectID(req.params.id) });   //another method from the mongodb object, gets the id from the delete call adress.
+    res.status(200).send();  // HTTP response code 200 - OK
 });
+
+//Edit Items
+
+
+router.put('/', (req, res) => {
+    res.send('PUT received at /api/items');
+})
 
 
 

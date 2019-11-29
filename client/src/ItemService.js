@@ -21,15 +21,20 @@ class ItemService {  //methods that will hit the routes in the items.js file, pa
         });
     }
 
-    static insertItem(text) {
+    static insertItem(item) {
         return axios.post(url, { //! POST IS THE METHOD NOT THE DATA OBJECT
-            "item": text
+            description: item.description,
+            quantity : item.quantity
         });
     }
     //Delete Item
 
     static deleteItem(id) {
         return axios.delete(`${url}${id}`);
+    }
+
+    static editItem() {
+        //nothing to see here
     }
 }
 

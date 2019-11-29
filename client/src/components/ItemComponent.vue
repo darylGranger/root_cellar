@@ -4,10 +4,11 @@
     <div class="create-item">
       <input
         type="text"
-        id="create-item"
-        v-model="text"
+        id="item-description"
+        v-model="item.description"
         placeholder="Put something in the root cellar"
       />
+      <input type="number" id="item-quantity" v-model="item.quantity" placeholder="0" />
       <button v-on:click="createItem">Add!</button>
     </div>
     <hr />
@@ -17,14 +18,16 @@
         class="item"
         v-for="item in items"
         v-bind:item="item"
-        v-bind:index="index"
         v-bind:key="item._id"
         v-on:dblclick="deleteItem(item._id)"
       >
-        <p
-          class="created-at"
-        >{{ `${item.createdAt.getDate()}/${item.createdAt.getMonth()}/${item.createdAt.getFullYear()}` }}</p>
-        <h3>{{ item.item }}</h3>
+        <div>
+          <p
+            class="created-at"
+          >{{ `${item.createdAt.getDate()}/${item.createdAt.getMonth()}/${item.createdAt.getFullYear()}` }}</p>
+          <h3>{{ item.description }} - {{ item.quantity }}</h3>
+          <h5>{{ item._id }}</h5>
+        </div>
       </div>
     </div>
   </div>
@@ -39,7 +42,10 @@ export default {
     return {
       items: [],
       error: "",
-      text: ""
+      item: {
+        description: "",
+        quantity: 1
+      }
     };
   },
   async created() {
@@ -51,12 +57,16 @@ export default {
   },
   methods: {
     async createItem() {
-      await ItemService.insertItem(this.text);
+      await ItemService.insertItem(this.item);
       this.items = await ItemService.getItems();
+      (this.item.description = ""), (this.item.quantity = 0);
     },
     async deleteItem(id) {
       await ItemService.deleteItem(id);
       this.items = await ItemService.getItems();
+    },
+    async editItem() {
+      //coming soon
     }
   }
 };
