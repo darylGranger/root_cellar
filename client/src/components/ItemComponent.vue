@@ -26,7 +26,6 @@
             class="created-at"
           >{{ `${item.createdAt.getDate()}/${item.createdAt.getMonth()}/${item.createdAt.getFullYear()}` }}</p>
           <h3>{{ item.description }} - {{ item.quantity }}</h3>
-          <h5>{{ item._id }}</h5>
         </div>
       </div>
     </div>
